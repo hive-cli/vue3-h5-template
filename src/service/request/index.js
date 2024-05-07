@@ -1,5 +1,4 @@
 import axios from 'axios'
-import { showToast } from 'vant'
 
 let defaultBaseURL = '/dev-api'
 switch (import.meta.env.MODE) {
@@ -76,11 +75,11 @@ export function createRequest(baseURL) {
       if (data?.status == 0) {
         return data.obj
       }
-      window.showToast.fail(data.msg)
+      showFailToast(data.msg)
       return Promise.reject(data)
     },
     error => {
-      showToast(error)
+      showFailToast(error)
       return Promise.reject(error)
     }
   )
